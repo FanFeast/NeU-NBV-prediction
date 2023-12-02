@@ -5,14 +5,14 @@ simulator:
 ifndef MODEL_NAME
 	$(error No model selected)
 else
-	docker exec -it neu_nbv_container bash -ic "roslaunch simulator ${MODEL_NAME}.launch"
+	docker exec -it nbv-prediction_container bash -ic "roslaunch simulator ${MODEL_NAME}.launch"
 endif
 
 training:
-	docker exec -it neu_nbv_container bash
+	docker exec -it nbv-prediction_container bash
 
 planning:
-	docker exec -it neu_nbv_container bash
+	docker exec -it nbv-prediction_container bash
 
 down:
 	docker compose down

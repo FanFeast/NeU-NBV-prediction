@@ -5,20 +5,20 @@ services:
     image: ros:noetic
     container_name: ros_master
     networks:
-      - neu_nbv_network
+      - nbv-prediction_network
     restart: always
     command: stdbuf -o L roscore
 
-  neu_nbv_container:
+  nbv-prediction_container:
     image: neu-nbv:v1
-    container_name: neu_nbv_container
+    container_name: nbv-prediction_container
     depends_on:
       - ros_master
     tty: true
     networks:
-      - neu_nbv_network
+      - nbv-prediction_network
     volumes:
-      - ./scripts:/neu_nbv/scripts:rw
+      - ./scripts:/nbv-prediction/scripts:rw
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
     environment:
@@ -28,5 +28,5 @@ services:
       - QT_X11_NO_MITSHM=1
 
 networks:
-  neu_nbv_network:
+  nbv-prediction_network:
     driver: bridge

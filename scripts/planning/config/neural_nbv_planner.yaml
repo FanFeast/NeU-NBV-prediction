@@ -1,6 +1,6 @@
 ###### configuration for neural_nbv_planner ######
-config_path: neural_rendering/logs/shapenet_training/training_setup.yaml
-checkpoint_path: neural_rendering/logs/shapenet_training/checkpoints/best.ckpt
+config_path: /neural_rendering/logs/dtu_training/training_setup.yaml #neural_rendering/logs/shapenet_training/training_setup.yaml
+checkpoint_path: /neural_rendering/logs/dtu_training/checkpoints/best.ckpt #neural_rendering/logs/shapenet_training/checkpoints/best.ckpt
 
 action_space:
   min_height: 0.3

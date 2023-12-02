@@ -3,7 +3,7 @@ FROM ros:noetic
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Set project folder
-WORKDIR "/neu_nbv"
+WORKDIR "/nbv-prediction"
 SHELL ["/bin/bash", "-c"]
 
 # Install basic packages
@@ -35,5 +35,5 @@ COPY src/simulator src/simulator
 RUN . /opt/ros/noetic/setup.bash &&\
     catkin build simulator -DPYTHON_EXECUTABLE=/usr/bin/python3
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc &&\
-    echo "source /neu_nbv/devel/setup.bash" >> ~/.bashrc &&\
+    echo "source /nbv-prediction/devel/setup.bash" >> ~/.bashrc &&\
     echo "conda activate neu-nbv" >> ~/.bashrc

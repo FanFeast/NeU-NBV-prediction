@@ -8,7 +8,7 @@ from torchinfo import summary
 import tqdm
 from utils import util
 import matplotlib.pyplot as plt
-
+import shutil
 
 class Trainer:
     def __init__(
@@ -93,7 +93,7 @@ class Trainer:
             self.best_performance = np.inf
         elif self.tracking_metric == "max":
             self.best_performance = 0.0
-
+        
         if os.path.exists(self.last_ckpt) and resume:
             self.load_state()
 
@@ -201,9 +201,10 @@ class Trainer:
                     "optimizer_state_dict": self.optimizer.state_dict(),
                     "scheduler_state_dict": self.lr_scheduler.state_dict(),
                 }
-
-                torch.save(ckpt_state_dict, self.last_ckpt)
-
+                last_p = os.path.join(self.ckpt_path, f"epoch{epoch}.ckpt")
+                torch.save(ckpt_state_dict, last_p)
+                shutil.copy(last_p, self.last_ckpt)
+                
                 if (
                     self.tracking_metric == "min"
                     and val_performance < self.best_performance

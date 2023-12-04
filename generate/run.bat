@@ -1,0 +1,1 @@
+blender -b ./scene.blend --python ./generate_posed_images.py -- --obj_dirs_file ./obj_list.txt --frames 60 --out_dir ./urbanscene --angle_spaces 30,60,90

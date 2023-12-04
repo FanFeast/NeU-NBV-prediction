@@ -1,14 +1,14 @@
 tracking_metric: min
 num_epoch_repeats: 16
-num_epochs: 1000
-ray_batch_size: 1200
+num_epochs: 250
+ray_batch_size: 600
 nviews: [3, 4, 5]
 use_data_augmentation: true
 freeze_encoder: false
-print_interval: 5
-save_interval: 1 
-vis_interval: 1
-vis_repeat: 10
+print_interval: 1
+save_interval: 5 
+vis_interval: 10
+vis_repeat: 4
 gpu_id: [0]
 
 loss:

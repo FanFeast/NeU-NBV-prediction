@@ -1,0 +1,19 @@
+name: dtu
+batch_size: 2
+shuffle: true
+num_workers: 1
+
+dataset:
+  data_rootdir: data/dataset/urbanscene3d
+  max_imgs: 49
+  image_size: [300, 400] # H W
+  z_near: 0.1
+  z_far: 2
+  format: opencv
+
+data_augmentation:
+  color_jitter:
+    hue_range: 0.1
+    saturation_range: 0.1
+    brightness_range: 0.1
+    contrast_range: 0.1

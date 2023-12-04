@@ -11,7 +11,7 @@ import numpy as np
 import cv2
 from utils.util import get_image_to_tensor_balanced, coordinate_transformation
 from utils.data_augmentation import get_transformation
-import shutil
+
 
 class DTUDataModule:
     def __init__(self, cfg):
@@ -50,7 +50,7 @@ class DTUDataModule:
             shuffle=shuffle,
             num_workers=num_workers,
             persistent_workers=True,
-            pin_memory=True
+            pin_memory=False
         )
         return dataloader
 

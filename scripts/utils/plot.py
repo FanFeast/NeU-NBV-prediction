@@ -49,13 +49,13 @@ def plot(dataframe_path):
 
     handles, labels = ax1.get_legend_handles_labels()
     order = [2, 0, 1]
-    ax1.legend(
-        [handles[idx] for idx in order],
-        [labels[idx] for idx in order],
-        loc="lower right",
-        fontsize=PLOT_LEGEND_SIZE,
-        frameon=False,
-    )
+    # ax1.legend(
+    #     [handles[idx] for idx in order],
+    #     [labels[idx] for idx in order],
+    #     loc="lower right",
+    #     fontsize=PLOT_LEGEND_SIZE,
+    #     frameon=False,
+    # )
 
     sb.lineplot(
         total_df,
@@ -74,7 +74,7 @@ def plot(dataframe_path):
     ax2.get_legend().remove()
     ax2.tick_params(axis="both", labelsize=PLOT_TICKS_SIZE)
 
-    plt.xticks([2, 3, 4, 5, 6, 7, 8, 9])
+    plt.xticks([2, 3])#, 4, 5, 6, 7, 8, 9])
     plt.savefig(f"{save_path}/plot_results.svg", bbox_inches="tight")
     plt.clf()
 

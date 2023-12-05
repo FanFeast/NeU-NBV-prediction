@@ -24,7 +24,6 @@ import json
 from tqdm import tqdm
 import ipdb
 
-
 warnings.filterwarnings("ignore")
 
 # follow pixelnerf setup
@@ -182,8 +181,9 @@ class DTUNBVPlanning:
         self.model = PretrainedModel(cfg["model"], ckpt_file, self.device, gpu_id)
 
         cfg["data"]["dataset"]["data_rootdir"] = os.path.join(
-            root_dir, "neural_rendering/data/dataset/top90.0"
+            root_dir, "neural_rendering/data/dataset/dtu_dataset/rs_dtu_4/DTU"
         )
+
         datamodule = get_data(cfg["data"])
         self.dataset = datamodule.load_dataset("val")
         self.z_near = self.dataset.z_near
@@ -212,13 +212,11 @@ class DTUNBVPlanning:
                     scene_title = data_instance["scan_name"]
                     ref_index_record[nviews][i] = {}
 
-                    print(f"test on {scene_title}")
+                    # print(f"test on {scene_title}")
                     images = data_instance["images"].to(self.device)
                     focal = data_instance["focal"].to(self.device)
                     c = data_instance["c"].to(self.device)
                     poses = data_instance["poses"].to(self.device)
-                    
-                    # ipdb.set_trace()
 
                     # random initialize first 2 ref images for all methods
                     for r in range(self.repeat):

@@ -1,0 +1,88 @@
+data:
+  batch_size: 4
+  data_augmentation:
+    color_jitter:
+      brightness_range: 0.1
+      contrast_range: 0.1
+      hue_range: 0.1
+      saturation_range: 0.1
+  dataset:
+    data_rootdir: ../../../data/dtu_dataset/rs_dtu_4/DTU
+    format: opencv
+    image_size:
+    - 300
+    - 400
+    max_imgs: 49
+    z_far: 3.5
+    z_near: 0.1
+  name: dtu
+  num_workers: 0
+  shuffle: true
+model:
+  network:
+    encoder:
+      backbone: resnet34
+      index_interp: bilinear
+      index_padding: border
+      norm_type: batch
+      num_layers: 3
+      pretrained: true
+      upsample_interp: bilinear
+      use_first_pool: true
+    mlp:
+      mlp_feature:
+        block_num: 2
+        d_feature: 128
+        d_latent: 256
+        positional_encoding:
+          d_in: 3
+          freq_factor: 2
+          include_input: true
+          num_freqs: 6
+        use_encoding: true
+        use_view: true
+      mlp_output:
+        block_num: 2
+        d_feature: 256
+        d_out: 6
+  renderer:
+    d_hidden: 128
+    d_in: 256
+    positional_encoding:
+      d_in: 3
+      freq_factor: 2
+      include_input: true
+      num_freqs: 6
+    raymarch_steps: 16
+    trainable: true
+    use_encoding: false
+model_name: neu1
+resume: false
+setup:
+  data_cfg_path: config/data/dtu.yaml
+  model_cfg_path: config/model/model.yaml
+  trainer_cfg_path: config/trainer/trainer.yaml
+setup_cfg_path: config/dtu_training_setup.yaml
+trainer:
+  freeze_encoder: false
+  gpu_id:
+  - 0
+  loss:
+    loss_type: logit
+    rgb_loss_type: mse
+  num_epoch_repeats: 16
+  num_epochs: 1000
+  nviews:
+  - 3
+  - 4
+  - 5
+  optimizer:
+    gamma: 0.999
+    learning_rate: 0.0001
+  print_interval: 5
+  ray_batch_size: 1200
+  save_interval: 1
+  tracking_metric: min
+  use_data_augmentation: true
+  vis_interval: 1
+  vis_repeat: 10
